@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MediCare+ | Your Trusted Online Pharmacy</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+<!-- Loading Spinner -->
+<div id="loader" class="loader-overlay">
+  <div class="loader-ring">
+    <div></div><div></div><div></div><div></div>
+  </div>
+  <p class="loader-text">MediCare+</p>
+</div>
+
+<!-- Notification Toast -->
+<div id="toast" class="toast"></div>
+
+<!-- ========== NAVBAR ========== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="#home" class="nav-logo" onclick="showPage('home')">
+      <span class="logo-icon"><i class="fas fa-plus-circle"></i></span>
+      MediCare<span>+</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" onclick="showPage('home')" class="nav-link active" data-page="home">Home</a></li>
+      <li><a href="#" onclick="showPage('products')" class="nav-link" data-page="products">Medicines</a></li>
+      <li><a href="#" onclick="showPage('prescription')" class="nav-link" data-page="prescription">Prescription</a></li>
+      <li><a href="#" onclick="showPage('admin')" class="nav-link" data-page="admin">Admin</a></li>
+      <li><a href="#" onclick="showPage('contact')" class="nav-link" data-page="contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-icon" id="darkModeToggle" title="Toggle Dark Mode" onclick="toggleDarkMode()">
+        <i class="fas fa-moon"></i>
+      </button>
+      <button class="btn-icon cart-btn" onclick="showPage('cart')" title="Cart">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+      <button class="btn-icon" onclick="showPage('auth')" title="Account">
+        <i class="fas fa-user-circle"></i>
+      </button>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ========== HOME PAGE ========== -->
+<div id="page-home" class="page active">
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <div class="hero-blob blob1"></div>
+      <div class="hero-blob blob2"></div>
+      <div class="hero-blob blob3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <span class="hero-badge"><i class="fas fa-shield-heart"></i> Trusted by 50,000+ patients</span>
+        <h1 class="hero-title">Your Health,<br><span>Our Priority.</span></h1>
+        <p class="hero-subtitle">Order genuine medicines, healthcare products, and more — delivered to your doorstep within 2 hours.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="showPage('products')">
+            <i class="fas fa-store"></i> Shop Now
+          </button>
+          <button class="btn btn-outline" onclick="showPage('prescription')">
+            <i class="fas fa-file-medical"></i> Upload Prescription
+          </button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><strong>10K+</strong><span>Medicines</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><strong>2hr</strong><span>Delivery</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><strong>100%</strong><span>Genuine</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card-stack">
+          <div class="hero-card hc1">
+            <i class="fas fa-capsules"></i>
+            <div>
+              <strong>Paracetamol 500mg</strong>
+              <span>₹24 · In Stock</span>
+            </div>
+          </div>
+          <div class="hero-card hc2">
+            <i class="fas fa-shield-virus"></i>
+            <div>
+              <strong>Vitamin C 1000mg</strong>
+              <span>₹89 · Best Seller</span>
+            </div>
+          </div>
+          <div class="hero-card hc3">
+            <i class="fas fa-truck-fast"></i>
+            <div>
+              <strong>Express Delivery</strong>
+              <span>2hrs · Free above ₹499</span>
+            </div>
+          </div>
+          <div class="hero-pill">
+            <i class="fas fa-check-circle"></i>
+            <span>Doctor Verified</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg"><path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="var(--bg)"/></svg>
+    </div>
+  </section>
+
+  <!-- Categories Strip -->
+  <section class="categories-strip section-pad">
+    <div class="container">
+      <h2 class="section-title">Shop by Category</h2>
+      <p class="section-sub">Find exactly what you need</p>
+      <div class="category-grid">
+        <div class="cat-card" onclick="filterAndGo('Tablets')">
+          <div class="cat-icon" style="--c:#4CAF50"><i class="fas fa-tablets"></i></div>
+          <span>Tablets</span>
+        </div>
+        <div class="cat-card" onclick="filterAndGo('Syrups')">
+          <div class="cat-icon" style="--c:#2196F3"><i class="fas fa-wine-bottle"></i></div>
+          <span>Syrups</span>
+        </div>
+        <div class="cat-card" onclick="filterAndGo('Vitamins')">
+          <div class="cat-icon" style="--c:#FF9800"><i class="fas fa-sun"></i></div>
+          <span>Vitamins</span>
+        </div>
+        <div class="cat-card" onclick="filterAndGo('Personal Care')">
+          <div class="cat-icon" style="--c:#E91E63"><i class="fas fa-heart-pulse"></i></div>
+          <span>Personal Care</span>
+        </div>
+        <div class="cat-card" onclick="filterAndGo('Devices')">
+          <div class="cat-icon" style="--c:#9C27B0"><i class="fas fa-stethoscope"></i></div>
+          <span>Devices</span>
+        </div>
+        <div class="cat-card" onclick="filterAndGo('Baby Care')">
+          <div class="cat-icon" style="--c:#00BCD4"><i class="fas fa-baby"></i></div>
+          <span>Baby Care</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="featured-section section-pad" id="featured">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Featured Products</h2>
+          <p class="section-sub">Handpicked for your wellness</p>
+        </div>
+        <button class="btn btn-ghost" onclick="showPage('products')">View All <i class="fas fa-arrow-right"></i></button>
+      </div>
+      <div class="products-grid" id="featuredGrid"></div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="why-section section-pad">
+    <div class="container">
+      <h2 class="section-title text-center">Why MediCare+?</h2>
+      <p class="section-sub text-center">Everything you need for your health, in one place</p>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-certificate"></i></div>
+          <h3>100% Genuine</h3>
+          <p>All medicines sourced directly from licensed manufacturers and distributors.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-truck-fast"></i></div>
+          <h3>Fast Delivery</h3>
+          <p>Get medicines delivered within 2 hours. Express delivery available 24/7.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-user-doctor"></i></div>
+          <h3>Expert Guidance</h3>
+          <p>Pharmacist support available to answer your medication questions.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-lock"></i></div>
+          <h3>Secure & Private</h3>
+          <p>Your health data and prescriptions are fully encrypted and private.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner section-pad">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-text">
+          <h2>Have a Prescription?</h2>
+          <p>Upload it and we'll prepare your order in minutes. Our pharmacists verify every prescription.</p>
+          <button class="btn btn-white" onclick="showPage('prescription')">
+            <i class="fas fa-upload"></i> Upload Now
+          </button>
+        </div>
+        <div class="cta-visual">
+          <i class="fas fa-file-prescription"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ========== PRODUCTS PAGE ========== -->
+<div id="page-products" class="page">
+  <div class="page-header">
+    <div class="container">
+      <h1>Medicine Store</h1>
+      <p>Browse our complete range of healthcare products</p>
+    </div>
+  </div>
+  <div class="container section-pad">
+    <div class="products-layout">
+      <!-- Sidebar Filters -->
+      <aside class="filters-panel">
+        <div class="filter-header">
+          <h3><i class="fas fa-sliders"></i> Filters</h3>
+          <button class="btn-text" onclick="clearFilters()">Clear All</button>
+        </div>
+        <div class="filter-group">
+          <h4>Category</h4>
+          <label class="filter-check"><input type="radio" name="cat" value="All" checked onchange="applyFilters()"> All Products</label>
+          <label class="filter-check"><input type="radio" name="cat" value="Tablets" onchange="applyFilters()"> Tablets</label>
+          <label class="filter-check"><input type="radio" name="cat" value="Syrups" onchange="applyFilters()"> Syrups</label>
+          <label class="filter-check"><input type="radio" name="cat" value="Vitamins" onchange="applyFilters()"> Vitamins</label>
+          <label class="filter-check"><input type="radio" name="cat" value="Personal Care" onchange="applyFilters()"> Personal Care</label>
+          <label class="filter-check"><input type="radio" name="cat" value="Devices" onchange="applyFilters()"> Devices</label>
+          <label class="filter-check"><input type="radio" name="cat" value="Baby Care" onchange="applyFilters()"> Baby Care</label>
+        </div>
+        <div class="filter-group">
+          <h4>Price Range</h4>
+          <input type="range" id="priceRange" min="0" max="1000" value="1000" oninput="applyFilters(); updatePriceLabel(this.value)">
+          <span class="price-label">Up to ₹<span id="priceLabel">1000</span></span>
+        </div>
+        <div class="filter-group">
+          <h4>Availability</h4>
+          <label class="filter-check"><input type="checkbox" id="inStockOnly" onchange="applyFilters()"> In Stock Only</label>
+        </div>
+      </aside>
+      <!-- Products Area -->
+      <div class="products-area">
+        <div class="search-sort-bar">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Search medicines, brands..." oninput="applyFilters()">
+          </div>
+          <select id="sortSelect" onchange="applyFilters()" class="sort-select">
+            <option value="default">Sort by</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="name-asc">Name A–Z</option>
+          </select>
+        </div>
+        <div class="results-info">
+          <span id="resultsCount">Showing all products</span>
+        </div>
+        <div class="products-grid" id="productsGrid"></div>
+        <div class="no-results hidden" id="noResults">
+          <i class="fas fa-box-open"></i>
+          <p>No products found. Try a different search or filter.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PRODUCT DETAIL PAGE ========== -->
+<div id="page-detail" class="page">
+  <div class="container section-pad">
+    <button class="btn-back" onclick="showPage('products')"><i class="fas fa-arrow-left"></i> Back to Products</button>
+    <div id="productDetail"></div>
+  </div>
+</div>
+
+<!-- ========== CART PAGE ========== -->
+<div id="page-cart" class="page">
+  <div class="page-header">
+    <div class="container">
+      <h1>Your Cart</h1>
+      <p>Review your selected items</p>
+    </div>
+  </div>
+  <div class="container section-pad">
+    <div class="cart-layout">
+      <div class="cart-items" id="cartItems"></div>
+      <div class="cart-summary" id="cartSummary"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== AUTH PAGE ========== -->
+<div id="page-auth" class="page">
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="loginTab" onclick="switchAuthTab('login')">Login</button>
+        <button class="auth-tab" id="signupTab" onclick="switchAuthTab('signup')">Sign Up</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm" class="auth-form" onsubmit="handleLogin(event)">
+        <div class="auth-header">
+          <div class="auth-logo"><i class="fas fa-plus-circle"></i></div>
+          <h2>Welcome Back</h2>
+          <p>Sign in to your account</p>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <div class="input-wrap"><i class="fas fa-envelope"></i><input type="email" id="loginEmail" placeholder="you@example.com" required></div>
+          <span class="error-msg" id="loginEmailError"></span>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <div class="input-wrap"><i class="fas fa-lock"></i><input type="password" id="loginPassword" placeholder="Enter your password" required>
+          <button type="button" class="toggle-pw" onclick="togglePw('loginPassword', this)"><i class="fas fa-eye"></i></button></div>
+          <span class="error-msg" id="loginPasswordError"></span>
+        </div>
+        <div class="form-row">
+          <label class="filter-check"><input type="checkbox"> Remember me</label>
+          <a href="#" class="link-text">Forgot password?</a>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+        <p class="auth-switch">Don't have an account? <a href="#" onclick="switchAuthTab('signup')">Sign up</a></p>
+      </form>
+
+      <!-- Signup Form -->
+      <form id="signupForm" class="auth-form hidden" onsubmit="handleSignup(event)">
+        <div class="auth-header">
+          <div class="auth-logo"><i class="fas fa-plus-circle"></i></div>
+          <h2>Create Account</h2>
+          <p>Join thousands of healthy users</p>
+        </div>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>First Name</label>
+            <div class="input-wrap"><i class="fas fa-user"></i><input type="text" id="signupFirstName" placeholder="First name" required></div>
+            <span class="error-msg" id="firstNameError"></span>
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <div class="input-wrap"><i class="fas fa-user"></i><input type="text" id="signupLastName" placeholder="Last name" required></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <div class="input-wrap"><i class="fas fa-envelope"></i><input type="email" id="signupEmail" placeholder="you@example.com" required></div>
+          <span class="error-msg" id="signupEmailError"></span>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <div class="input-wrap"><i class="fas fa-phone"></i><input type="tel" id="signupPhone" placeholder="+91 99999 99999" required></div>
+          <span class="error-msg" id="signupPhoneError"></span>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <div class="input-wrap"><i class="fas fa-lock"></i><input type="password" id="signupPassword" placeholder="Min 8 characters" required>
+          <button type="button" class="toggle-pw" onclick="togglePw('signupPassword', this)"><i class="fas fa-eye"></i></button></div>
+          <span class="error-msg" id="signupPasswordError"></span>
+        </div>
+        <div class="form-group">
+          <label>Confirm Password</label>
+          <div class="input-wrap"><i class="fas fa-lock"></i><input type="password" id="signupConfirm" placeholder="Repeat your password" required></div>
+          <span class="error-msg" id="signupConfirmError"></span>
+        </div>
+        <label class="filter-check">
+          <input type="checkbox" id="termsCheck" required> I agree to the <a href="#" class="link-text">Terms & Privacy Policy</a>
+        </label>
+        <span class="error-msg" id="termsError"></span>
+        <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+        <p class="auth-switch">Already have an account? <a href="#" onclick="switchAuthTab('login')">Sign in</a></p>
+      </form>
+    </div>
+    <div class="auth-side">
+      <div class="auth-side-content">
+        <h2>Your wellness journey starts here.</h2>
+        <ul class="auth-benefits">
+          <li><i class="fas fa-check-circle"></i> Free delivery on first order</li>
+          <li><i class="fas fa-check-circle"></i> Track your orders in real-time</li>
+          <li><i class="fas fa-check-circle"></i> Store prescriptions securely</li>
+          <li><i class="fas fa-check-circle"></i> Get health tips & reminders</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PRESCRIPTION PAGE ========== -->
+<div id="page-prescription" class="page">
+  <div class="page-header">
+    <div class="container">
+      <h1>Upload Prescription</h1>
+      <p>Let our pharmacists handle your medication needs</p>
+    </div>
+  </div>
+  <div class="container section-pad">
+    <div class="prescription-layout">
+      <div class="prescription-form-card">
+        <h2><i class="fas fa-file-medical"></i> Submit Your Prescription</h2>
+        <form id="prescriptionForm" onsubmit="handlePrescription(event)">
+          <div class="form-group">
+            <label>Patient Name</label>
+            <div class="input-wrap"><i class="fas fa-user"></i><input type="text" id="patientName" placeholder="Full name" required></div>
+          </div>
+          <div class="form-group">
+            <label>Contact Number</label>
+            <div class="input-wrap"><i class="fas fa-phone"></i><input type="tel" id="patientPhone" placeholder="+91 99999 99999" required></div>
+          </div>
+          <div class="form-group">
+            <label>Doctor's Name (Optional)</label>
+            <div class="input-wrap"><i class="fas fa-user-doctor"></i><input type="text" id="doctorName" placeholder="Dr. Name"></div>
+          </div>
+          <div class="form-group">
+            <label>Upload Prescription <span class="required">*</span></label>
+            <div class="upload-zone" id="uploadZone" onclick="document.getElementById('prescFile').click()" ondragover="handleDragOver(event)" ondrop="handleDrop(event)">
+              <input type="file" id="prescFile" accept=".jpg,.jpeg,.png,.pdf" style="display:none" onchange="handleFileSelect(event)">
+              <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+              <p class="upload-text">Click or drag & drop your prescription here</p>
+              <p class="upload-hint">Supported: JPG, PNG, PDF · Max 10MB</p>
+              <div id="uploadPreview" class="upload-preview hidden"></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Special Instructions</label>
+            <textarea id="prescNotes" rows="3" placeholder="Any allergies, special requirements..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full"><i class="fas fa-paper-plane"></i> Submit Prescription</button>
+        </form>
+      </div>
+      <div class="prescription-info">
+        <h3>How It Works</h3>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-text">
+              <strong>Upload</strong>
+              <p>Take a clear photo or scan of your doctor's prescription.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-text">
+              <strong>Verification</strong>
+              <p>Our licensed pharmacist verifies the prescription within 30 minutes.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-text">
+              <strong>Order</strong>
+              <p>Medicines are packed and dispatched immediately after verification.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-text">
+              <strong>Delivery</strong>
+              <p>Receive your medicines at your doorstep within 2 hours.</p>
+            </div>
+          </div>
+        </div>
+        <div class="presc-notice">
+          <i class="fas fa-info-circle"></i>
+          <p>We follow all regulatory guidelines. Prescription medicines are only dispensed with a valid prescription.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== ADMIN DASHBOARD ========== -->
+<div id="page-admin" class="page">
+  <div class="page-header">
+    <div class="container">
+      <h1>Admin Dashboard</h1>
+      <p>Manage your pharmacy inventory</p>
+    </div>
+  </div>
+  <div class="container section-pad">
+    <!-- Stats Row -->
+    <div class="admin-stats">
+      <div class="admin-stat-card">
+        <i class="fas fa-pills"></i>
+        <div><strong id="statProducts">0</strong><span>Total Products</span></div>
+      </div>
+      <div class="admin-stat-card">
+        <i class="fas fa-tags"></i>
+        <div><strong id="statCategories">6</strong><span>Categories</span></div>
+      </div>
+      <div class="admin-stat-card">
+        <i class="fas fa-check-circle"></i>
+        <div><strong id="statInStock">0</strong><span>In Stock</span></div>
+      </div>
+      <div class="admin-stat-card">
+        <i class="fas fa-exclamation-triangle"></i>
+        <div><strong id="statLow">0</strong><span>Low Stock</span></div>
+      </div>
+    </div>
+
+    <div class="admin-layout">
+      <!-- Add/Edit Form -->
+      <div class="admin-form-card">
+        <h3 id="adminFormTitle"><i class="fas fa-plus"></i> Add New Medicine</h3>
+        <form id="adminForm" onsubmit="handleAdminSubmit(event)">
+          <input type="hidden" id="editProductId">
+          <div class="form-group">
+            <label>Medicine Name <span class="required">*</span></label>
+            <div class="input-wrap"><i class="fas fa-pills"></i><input type="text" id="adminName" placeholder="e.g. Paracetamol 500mg" required></div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Category <span class="required">*</span></label>
+              <select id="adminCategory" required class="sort-select">
+                <option value="">Select category</option>
+                <option>Tablets</option>
+                <option>Syrups</option>
+                <option>Vitamins</option>
+                <option>Personal Care</option>
+                <option>Devices</option>
+                <option>Baby Care</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Price (₹) <span class="required">*</span></label>
+              <div class="input-wrap"><i class="fas fa-indian-rupee-sign"></i><input type="number" id="adminPrice" placeholder="0.00" min="0" step="0.01" required></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea id="adminDesc" rows="2" placeholder="Usage, dosage info..."></textarea>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Stock Quantity</label>
+              <div class="input-wrap"><i class="fas fa-boxes-stacked"></i><input type="number" id="adminStock" placeholder="0" min="0"></div>
+            </div>
+            <div class="form-group">
+              <label>Requires Rx?</label>
+              <select id="adminRx" class="sort-select">
+                <option value="false">No</option>
+                <option value="true">Yes</option>
+              </select>
+            </div>
+          </div>
+          <div class="admin-form-actions">
+            <button type="submit" class="btn btn-primary" id="adminSubmitBtn"><i class="fas fa-save"></i> Save Medicine</button>
+            <button type="button" class="btn btn-ghost" onclick="cancelAdminEdit()">Cancel</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Product Table -->
+      <div class="admin-table-card">
+        <div class="admin-table-header">
+          <h3>Inventory</h3>
+          <div class="search-box mini">
+            <i class="fas fa-search"></i>
+            <input type="text" id="adminSearch" placeholder="Search..." oninput="renderAdminTable()">
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="admin-table" id="adminTable">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Rx</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminTableBody"></tbody>
+          </table>
+          <div class="no-results hidden" id="adminNoResults">
+            <i class="fas fa-box-open"></i>
+            <p>No products in inventory. Add one above.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== CONTACT PAGE ========== -->
+<div id="page-contact" class="page">
+  <div class="page-header">
+    <div class="container">
+      <h1>Contact Us</h1>
+      <p>We're here to help, 24/7</p>
+    </div>
+  </div>
+  <div class="container section-pad">
+    <div class="contact-layout">
+      <div class="contact-form-card">
+        <h2>Send a Message</h2>
+        <form id="contactForm" onsubmit="handleContact(event)">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Your Name</label>
+              <div class="input-wrap"><i class="fas fa-user"></i><input type="text" id="cName" placeholder="Full name" required></div>
+              <span class="error-msg" id="cNameError"></span>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <div class="input-wrap"><i class="fas fa-envelope"></i><input type="email" id="cEmail" placeholder="you@example.com" required></div>
+              <span class="error-msg" id="cEmailError"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Subject</label>
+            <div class="input-wrap"><i class="fas fa-tag"></i>
+            <select id="cSubject" class="sort-select" style="padding-left:2.5rem">
+              <option value="">Select a topic</option>
+              <option>Order Issue</option>
+              <option>Prescription Query</option>
+              <option>Medicine Info</option>
+              <option>Delivery Problem</option>
+              <option>Refund/Return</option>
+              <option>Other</option>
+            </select>
+            </div>
+            <span class="error-msg" id="cSubjectError"></span>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea id="cMessage" rows="5" placeholder="Describe your query..." required></textarea>
+            <span class="error-msg" id="cMessageError"></span>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full"><i class="fas fa-paper-plane"></i> Send Message</button>
+        </form>
+      </div>
+      <div class="contact-info-panel">
+        <h3>Get in Touch</h3>
+        <div class="contact-info-items">
+          <div class="contact-info-item">
+            <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <strong>Address</strong>
+              <p>MediCare+ Pharmacy, 14 Healthcare Avenue,<br>Bandra West, Mumbai – 400050</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="ci-icon"><i class="fas fa-phone-alt"></i></div>
+            <div>
+              <strong>Phone</strong>
+              <p>+91 98765 43210<br>Toll Free: 1800-123-4567</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="ci-icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <strong>Email</strong>
+              <p>support@medicare-plus.in<br>admin@medicare-plus.in</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="ci-icon"><i class="fas fa-clock"></i></div>
+            <div>
+              <strong>Hours</strong>
+              <p>Mon – Sat: 8:00 AM – 10:00 PM<br>Sun: 9:00 AM – 6:00 PM</p>
+            </div>
+          </div>
+        </div>
+        <div class="contact-socials">
+          <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo" onclick="showPage('home')">
+          <span class="logo-icon"><i class="fas fa-plus-circle"></i></span>
+          MediCare<span>+</span>
+        </a>
+        <p>India's most trusted online pharmacy. Quality medicines, fast delivery, genuine care.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-btn sm"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-btn sm"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-btn sm"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-btn sm"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('home')">Home</a></li>
+          <li><a href="#" onclick="showPage('products')">Medicines</a></li>
+          <li><a href="#" onclick="showPage('prescription')">Upload Rx</a></li>
+          <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="#" onclick="filterAndGo('Tablets')">Tablets</a></li>
+          <li><a href="#" onclick="filterAndGo('Syrups')">Syrups</a></li>
+          <li><a href="#" onclick="filterAndGo('Vitamins')">Vitamins</a></li>
+          <li><a href="#" onclick="filterAndGo('Personal Care')">Personal Care</a></li>
+          <li><a href="#" onclick="filterAndGo('Devices')">Devices</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Returns Policy</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Track Order</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 MediCare+ Pharmacy. All rights reserved. | Licensed by Drugs Controller General of India</p>
+      <div class="footer-badges">
+        <span><i class="fas fa-shield-alt"></i> SSL Secured</span>
+        <span><i class="fas fa-award"></i> ISO Certified</span>
+        <span><i class="fas fa-certificate"></i> CDSCO Approved</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
